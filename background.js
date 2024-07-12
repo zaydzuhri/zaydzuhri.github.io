@@ -30,11 +30,11 @@ function drawPoints(points) {
         );
         let color = ``;
         if (point[2] === 0) {
-            color = `rgba(0,0,255,0.3)`;
+            color = `rgba(0,0,255,0.2)`;
         } else if (point[2] === 1) {
-            color = `rgba(255,0,0,0.3)`;
+            color = `rgba(255,0,0,0.2)`;
         } else if (point[2] === 2) {
-            color = `rgba(0,0,0,0.3)`;
+            color = `rgba(0,0,0,0.2)`;
         }
         ctx.fillStyle = color;
         ctx.fill();
