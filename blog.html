@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>zaydzuhri</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.26.1/full/pyodide.js"></script>
+</head>
+
+<body>
+    <canvas id="backgroundCanvas"></canvas>
+    <header>
+        <nav>
+            <div class="logo">zaydzuhri</div>
+            <div class="nav-links">
+                <a href="index.html">home</a>
+                <a href="blog.html">blog</a>
+            </div>
+        </nav>
+    </header>
+    <div id="content">
+        <!-- <h1>Blog</h1> -->
+        <div id="blog-list"></div>
+        <div id="blog-content" style="display: none;"></div>
+    </div>
+    <script src="background.js"></script>
+    <script>
+        const blogList = document.getElementById('blog-list');
+        const blogContent = document.getElementById('blog-content');
+        const converter = new showdown.Converter();
+
+        function loadBlogPosts() {
+            fetch('blog/')
+                .then(response => response.text())
+                .then(html => {
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(html, 'text/html');
+                    const links = Array.from(doc.querySelectorAll('a'))
+                        .filter(a => a.href.endsWith('.md'));
+
+                    return Promise.all(links.map(link =>
+                        fetch(`blog/${link.href.split('/').pop()}`)
+                            .then(response => response.text())
+                            .then(content => ({
+                                file: link.href.split('/').pop(),
+                                content: content
+                            }))
+                    ));
+                })
+                .then(posts => {
+                    blogList.innerHTML = posts.map(post => {
+                        const lines = post.content.split('\n');
+                        const title = lines[0].replace('#', '').trim();
+                        const preview = lines.slice(1).join(' ').substring(0, 100) + '...';
+                        return `
+                            <div class="blog-preview" onclick="loadPost('${post.file}')">
+                                <h2>${title}</h2>
+                                <p>${preview}</p>
+                            </div>
+                        `;
+                    }).join('');
+                });
+        }
+
+        function loadPost(file) {
+            fetch(`blog/${file}`)
+                .then(response => response.text())
+                .then(markdown => {
+                    blogList.style.display = 'none';
+                    blogContent.style.display = 'block';
+                    blogContent.innerHTML = converter.makeHtml(markdown);
+                    blogContent.innerHTML += '<button onclick="goBackToList()">Back to Blog List</button>';
+                });
+        }
+
+        function goBackToList() {
+            blogList.style.display = 'block';
+            blogContent.style.display = 'none';
+        }
+
+        loadBlogPosts();
+    </script>
+</body>
+
+</html>

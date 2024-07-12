@@ -6,16 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>zaydzuhri</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.26.1/full/pyodide.js"></script>
 </head>
 
 <body>
     <canvas id="backgroundCanvas"></canvas>
-    <div id="content">
-        <h1>Hello World! I'm Zed</h1>
-        <!-- Add more content here to enable scrolling -->
-        <!-- <div style="height: 200vh;"></div> -->
-    </div>
-    <script src="script.js"></script>
+    <header>
+        <nav>
+            <div class="logo">zaydzuhri</div>
+            <div class="nav-links">
+                <a href="index.html">home</a>
+                <a href="blog.html">blog</a>
+            </div>
+        </nav>
+    </header>
+    <div id="content"></div>
+    <script src="background.js"></script>
+    <script>
+        // Load home.md by default
+        loadMarkdown('home.md');
+    </script>
 </body>
 
 </html>
