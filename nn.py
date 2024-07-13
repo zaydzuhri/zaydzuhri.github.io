@@ -170,10 +170,12 @@ def initialize_model():
         Sigmoid()
     ])
     criterion = BinaryCrossEntropy()
-    opt = AdamW(0.01, weight_decay=0.0005)
+    opt = AdamW(0.01, weight_decay=0.0001)
+
+i = 0
 
 def step():
-    global classifier, criterion, opt, x, y
+    global classifier, criterion, opt, x, y, i
     y_pred = classifier.forward(x)
     l = criterion.forward(y_pred, y)
     dLdy = criterion.backward()
@@ -184,7 +186,15 @@ def step():
     x2 = np.linspace(0, 1, 72)
     X1, X2 = np.meshgrid(x1, x2)
     X = np.vstack([X1.ravel(), X2.ravel()]).T
-    y_pred = classifier.forward(X).reshape(-1)
+    y_p = classifier.forward(X).reshape(-1)
     # boundary line is just where y_pred is between 0.4 and 0.6
-    b_line = X[(y_pred > 0.2) & (y_pred < 0.8)]
+    b_line = X[(y_p > 0.2) & (y_p < 0.8)]
+    y_pred = y_pred.reshape(-1) > 0.5
+    accuracy = np.mean(y_pred == y)
+    i += 1
+    if i % 50 == 0:
+        print(f"Iteration: {i}, Loss: {l}, Accuracy: {accuracy}")
+    # if loss is nan, reset the model
+    if np.isnan(l):
+        initialize_model()
     return to_js(b_line.tolist())

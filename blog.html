@@ -18,6 +18,7 @@
             <div class="nav-links">
                 <a href="index.html">home</a>
                 <a href="blog.html">blog</a>
+                <a href="index.html?m=what.md">what??</a>
             </div>
         </nav>
     </header>
@@ -32,67 +33,41 @@
         const blogContent = document.getElementById('blog-content');
         const converter = new showdown.Converter();
 
-        // function loadBlogPosts() {
-        //     fetch('blog/')
-        //         .then(response => response.text())
-        //         .then(html => {
-        //             const parser = new DOMParser();
-        //             const doc = parser.parseFromString(html, 'text/html');
-        //             const links = Array.from(doc.querySelectorAll('a'))
-        //                 .filter(a => a.href.endsWith('.md'));
-
-        //             return Promise.all(links.map(link =>
-        //                 fetch(`blog/${link.href.split('/').pop()}`)
-        //                     .then(response => response.text())
-        //                     .then(content => ({
-        //                         file: link.href.split('/').pop(),
-        //                         content: content
-        //                     }))
-        //             ));
-        //         })
-        //         .then(posts => {
-        //             blogList.innerHTML = posts.map(post => {
-        //                 const lines = post.content.split('\n');
-        //                 const title = lines[0].replace('#', '').trim();
-        //                 const preview = lines.slice(1).join(' ').substring(0, 100) + '...';
-        //                 return `
-        //                     <div class="blog-preview" onclick="loadPost('${post.file}')">
-        //                         <h2>${title}</h2>
-        //                         <p>${preview}</p>
-        //                     </div>
-        //                 `;
-        //             }).join('');
-        //         });
-        // }
-
-        // Redo the above function but with a defined list of blog post files
-        // Turns out you can't fetch a directory listing from a server
         const blogFiles = [
+            'transformersteps.md',
             'first.md',
         ];
 
         function loadBlogPosts() {
-            Promise.all(blogFiles.map(file =>
-                fetch(`blog/${file}`)
-                    .then(response => response.text())
-                    .then(content => ({
-                        file: file,
-                        content: content
-                    }))
-            ))
-                .then(posts => {
-                    blogList.innerHTML = posts.map(post => {
-                        const lines = post.content.split('\n');
-                        const title = lines[0].replace('#', '').trim();
-                        const preview = lines.slice(1).join(' ').substring(0, 100) + '...';
-                        return `
-                            <div class="blog-preview" onclick="loadPost('${post.file}')">
-                                <h2>${title}</h2>
-                                <p>${preview}</p>
-                            </div>
-                        `;
-                    }).join('');
-                });
+            let url = new URL(window.location.href);
+            let m = url.searchParams.get('m');
+            if (m) {
+                loadPost(m);
+            } else {
+                Promise.all(blogFiles.map(file =>
+                    fetch(`blog/${file}`)
+                        .then(response => response.text())
+                        .then(content => ({
+                            file: file,
+                            content: content
+                        }))
+                ))
+                    .then(posts => {
+                        blogList.innerHTML = posts.map(post => {
+                            const lines = post.content.split('\n');
+                            const title = lines[0].replace('#', '').trim();
+                            const preview = lines.slice(1).join(' ').substring(0, 100) + '...';
+                            return `
+                            <a href="blog.html?m=${post.file}">
+                                <div class="blog-preview">
+                                    <h2>${title}</h2>
+                                    <p>${preview}</p>
+                                </div>
+                            </a>
+                            `
+                        }).join('');
+                    });
+            }
         }
 
         function loadPost(file) {
@@ -101,14 +76,16 @@
                 .then(markdown => {
                     blogList.style.display = 'none';
                     blogContent.style.display = 'block';
+                    blogContent.style.textShadow = 'none';
                     blogContent.innerHTML = converter.makeHtml(markdown);
                     blogContent.innerHTML += '<button onclick="goBackToList()">back</button>';
+                    runBackground = false;
                 });
         }
 
         function goBackToList() {
-            blogList.style.display = 'block';
-            blogContent.style.display = 'none';
+            window.location.href = 'blog.html';
+            runBackground = true;
         }
 
         loadBlogPosts();

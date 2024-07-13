@@ -2,6 +2,9 @@ let canvas = document.getElementById('backgroundCanvas');
 let ctx = canvas.getContext('2d');
 const content = document.getElementById('content');
 
+let runBackground = true;
+let opacity = 0.15;
+
 function loadMarkdown(file) {
     fetch(file)
         .then(response => response.text())
@@ -9,6 +12,16 @@ function loadMarkdown(file) {
             const converter = new showdown.Converter();
             content.innerHTML = converter.makeHtml(text);
         });
+}
+
+function readURL() {
+    let url = new URL(window.location.href);
+    let m = url.searchParams.get('m');
+    if (m) {
+        loadMarkdown(m);
+    } else {
+        loadMarkdown('home.md');
+    }
 }
 
 function resizeCanvas() {
@@ -30,11 +43,11 @@ function drawPoints(points) {
         );
         let color = ``;
         if (point[2] === 0) {
-            color = `rgba(0,0,255,0.2)`;
+            color = `rgba(0,0,255,${opacity})`;
         } else if (point[2] === 1) {
-            color = `rgba(255,0,0,0.2)`;
+            color = `rgba(255,0,0,${opacity})`;
         } else if (point[2] === 2) {
-            color = `rgba(0,0,0,0.2)`;
+            color = `rgba(0,0,0,${opacity})`;
         }
         ctx.fillStyle = color;
         ctx.fill();
@@ -61,7 +74,7 @@ async function main() {
     let step = pyodide.globals.get("step");
     initialize_model();
     // After a training sesh on one data, regenerate the data with the same model
-    for (let n = 0; n < 999999; n++) {
+    for (let n = 0; n < 999999 && runBackground; n++) {
         let points = await generate();
         resizeCanvas();
         drawPoints(points);
@@ -74,12 +87,15 @@ async function main() {
             // Add the boundary to the points
             points = addBoundaryToPoints(points, boundary);
             drawPoints(points);
-            await new Promise(resolve => setTimeout(resolve, 25));
+            await new Promise(resolve => setTimeout(resolve, 20));
+        }
+        if (n % 100 === 0) {
+            console.clear();
         }
     }
 }
 
-main();
+if (runBackground) main();
 
 window.addEventListener('resize', () => {
     resizeCanvas();

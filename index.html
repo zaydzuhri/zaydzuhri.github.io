@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>zaydzuhri</title>
+    <link rel="icon" type="image/x-icon" href="https://github.com/zaydzuhri.png">
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js"></script>
     <script src="https://cdn.jsdelivr.net/pyodide/v0.26.1/full/pyodide.js"></script>
@@ -18,14 +19,20 @@
             <div class="nav-links">
                 <a href="index.html">home</a>
                 <a href="blog.html">blog</a>
+                <a href="index.html?m=what.md">what??</a>
             </div>
         </nav>
     </header>
     <div id="content"></div>
     <script src="background.js"></script>
     <script>
-        // Load home.md by default
-        loadMarkdown('home.md');
+        let url = new URL(window.location.href);
+        let m = url.searchParams.get('m');
+        if (m) {
+            loadMarkdown(m);
+        } else {
+            loadMarkdown('home.md');
+        }                
     </script>
 </body>
 
