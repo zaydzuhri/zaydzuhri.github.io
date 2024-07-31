@@ -8,6 +8,7 @@
 [linkedin](https://www.linkedin.com/in/zayd-muhammad-kawakibi-zuhri-46a391191/)
 [arxiv](https://arxiv.org/search/cs?searchtype=author&query=Zuhri,+Z+M+K)
 [wandb](https://wandb.ai/zaydzuhri)
+[zaydzuhri@gmail.com](mailto:zaydzuhri@gmail.com)
 
 I am an (aspiring?) machine learning researcher who likes making silicon think, watching loss graphs go down, seeing curves fit (just like this [background!](index.html?m=what.md)). I do want to eventually contribute to making AGI/ASI, ideally coming up with the architecture or something, but we'll see how that goes.
 
