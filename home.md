@@ -12,7 +12,7 @@
 
 I am an (aspiring?) machine learning researcher who likes making silicon think, watching loss graphs go down, seeing curves fit (just like this [background!](index.html?m=what.md)). I do want to eventually contribute to making AGI/ASI, ideally coming up with the architecture or something, but we'll see how that goes.
 
-I am (soon to be) employed as a research assisstant at [MBZUAI](https://mbzuai.ac.ae/) under [Alham Fikri Aji](https://afaji.github.io), where I will be working on some cool stuff in and around NLP. Here, I am most interested in the architectures of sequence models, both looking for novel approaches and trying to optimize existing ones.
+I am employed as a research assisstant at Monash University under [Alham Fikri Aji](https://afaji.github.io) and Derry Wijaya, where I will be working on some cool stuff in and around NLP. Here, I am most interested in the architectures of sequence models, both looking for novel approaches and trying to optimize existing ones. Currently investigating multi-token or future token prediction i.e. non-causal language modelling
 
 ## research
 - (june 2024) [MLKV: Multi-Layer Key-Value Heads for Memory Efficient Transformer Decoding](https://arxiv.org/abs/2406.09297)
@@ -21,7 +21,7 @@ I am (soon to be) employed as a research assisstant at [MBZUAI](https://mbzuai.a
 - (december 2021) [A Combinatorial Analysis of Tic-Tac-Toe and The Theoretical Advantage of Playing First](https://informatika.stei.itb.ac.id/~rinaldi.munir/Matdis/2021-2022/Makalah2021/Makalah-Matdis-2021%20(148).pdf)
 
 ## work
-- (2024 - current) Research Assistant at [MBZUAI](https://mbzuai.ac.ae/)
+- (2024 - current) Research Assistant at Monash University
 - (2023 - 2024) Machine Learning Engineer at [MeetKai](https://meetkai.com/)
 
 ## education
