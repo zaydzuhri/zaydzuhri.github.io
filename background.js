@@ -3,7 +3,7 @@ let ctx = canvas.getContext('2d');
 const content = document.getElementById('content');
 
 let runBackground = true;
-let opacity = 0.15;
+let opacity = 0.1;
 
 function loadMarkdown(file) {
     fetch(file)
