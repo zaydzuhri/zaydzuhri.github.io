@@ -14,7 +14,11 @@
 
 I'm a machine learning researcher who likes making silicon think, watching loss graphs go down, seeing curves fit (just like this [background!](index.html?m=what.md)). I do want to eventually contribute to making AGI/ASI, ideally coming up with the architecture or learning algorithm, but we'll see how that goes.
 
-I am currently employed as a research assistant at MBZUAI under [Alham Fikri Aji](https://afaji.github.io), where I will be working on some cool stuff in and around NLP. Here, I am most interested in the architectures of sequence models (specifically language models), both looking for novel approaches and trying to optimize existing ones. Currently investigating multiple stuff, but I would classify my research interests in two categories:
+I was previously employed as a research assistant at MBZUAI under [Alham Fikri Aji](https://afaji.github.io), where I worked on some cool stuff in and around NLP, mostly LLM architecture work.
+
+I'm now a master's student in Computer Science at [UdeM](https://diro.umontreal.ca/accueil/) and [Mila Institute](https://mila.quebec/en), doing a research-focused program under the supervision of [Sarath Chandar](https://sarathchandar.in/) and [Razvan Pascanu](https://sites.google.com/view/razp/home) within [Chandar Lab](https://chandar-lab.github.io/) starting August 2026.
+
+I'm interested in the architectures of sequence models (specifically language models), both looking for novel approaches and trying to optimize existing ones. Currently investigating multiple stuff, but I would classify my research interests in two categories:
 
 ### short-term interests
 - Efficient and/or effective transformer architectural modifications
@@ -35,12 +39,13 @@ I am currently employed as a research assistant at MBZUAI under [Alham Fikri Aji
 - (december 2021) [A Combinatorial Analysis of Tic-Tac-Toe and The Theoretical Advantage of Playing First](https://informatika.stei.itb.ac.id/~rinaldi.munir/Matdis/2021-2022/Makalah2021/Makalah-Matdis-2021%20(148).pdf)
 
 ## work
-- (2025 - present) Research Assistant at MBZUAI (technically I'm a research engineer, but in practice I do my own research)
+- (2025 - 2026) Research Assistant at MBZUAI (technically I'm a research engineer, but in practice I do my own research)
 - (2024 - 2024) Research Assistant at Monash University
 - (2023 - 2024) Machine Learning Engineer at [MeetKai](https://meetkai.com/)
 
 ## education
-- (2020 - 2024) BSc in Computer Science at [ITB](https://itb.ac.id/)
+- (2026 - present) MSc in Computer Science at [UdeM](https://diro.umontreal.ca/accueil/) and [Mila](https://mila.quebec/en), supervised by [Sarath Chandar](https://sarathchandar.in/) and [Razvan Pascanu](https://sites.google.com/view/razp/home)
+- (2020 - 2024) BSc in Computer Science at [ITB](https://itb.ac.id/), thesis supervised by [Ayu Purwarianti](https://scholar.google.com/citations?user=8jUro_cAAAAJ&hl=en)
 
 ## projects
 - (2023) [MoreFormers](https://github.com/zaydzuhri/moreformers)
